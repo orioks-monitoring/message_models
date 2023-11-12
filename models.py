@@ -1,6 +1,10 @@
 from typing import Literal
 
-from models.BaseMessage import BaseMessage
+from pydantic import BaseModel
+
+
+class BaseMessage(BaseModel):
+    type: Literal["mark", "homework", "request", "new", "to_admins"]
 
 
 class ChangeMessage(BaseMessage):
@@ -34,3 +38,8 @@ class NewChangeMessage(ChangeMessage):
     side_text: str
     url: str
     caption: str
+
+
+class ToAdminsMessage(BaseMessage):
+    type: Literal["to_admins"] = "to_admins"
+    message: str
