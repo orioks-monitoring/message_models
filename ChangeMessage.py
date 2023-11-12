@@ -4,12 +4,12 @@ from pydantic import BaseModel
 
 
 class ChangeMessage(BaseModel):
-    type: Literal["mark", "homework", "request"]
+    type: Literal["mark", "homework", "request", "new"]
     user_telegram_id: int
 
 
 class MarkChangeMessage(ChangeMessage):
-    type: Literal["mark"]
+    type: Literal["mark"] = "mark"
     title_text: str
     mark_change_text: str
     current_grade: float
@@ -19,17 +19,17 @@ class MarkChangeMessage(ChangeMessage):
 
 
 class HomeworkChangeMessage(ChangeMessage):
-    type: Literal["homework"]
+    type: Literal["homework"] = "homework"
     message: str
 
 
 class RequestChangeMessage(ChangeMessage):
-    type: Literal["request"]
+    type: Literal["request"] = "request"
     message: str
 
 
 class NewChangeMessage(ChangeMessage):
-    type: Literal["new"]
+    type: Literal["new"] = "new"
     title_text: str
     side_text: str
     url: str
