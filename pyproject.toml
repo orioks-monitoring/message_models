@@ -1,0 +1,14 @@
+[project]
+name = "ORIOKS Monitoring Bot"
+description = "Bot for tracking changes in the educational electronic environment (ORIOKS) National Research University of Electronic Technology MIET orioks.miet.ru on the Telegram platform."
+license = "MIT"
+repository = "https://github.com/orioks-monitoring/message_models"
+homepage = "orioks-monitoring.github.io/bot/"
+readme = "README.md"
+
+
+[tool.black]
+line-length = 79
+skip-string-normalization = true
+target-version = ['py311']
+include = '\.pyi?$'
