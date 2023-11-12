@@ -1,9 +1,9 @@
 from typing import Literal
 
-from pydantic import BaseModel
+from models.BaseMessage import BaseMessage
 
 
-class ChangeMessage(BaseModel):
+class ChangeMessage(BaseMessage):
     type: Literal["mark", "homework", "request", "new"]
     user_telegram_id: int
 
