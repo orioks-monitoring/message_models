@@ -12,7 +12,7 @@ class MarkChangeMessage(ChangeMessage):
     type: Literal["mark"] = "mark"
     title_text: str
     mark_change_text: str
-    current_grade: float
+    current_grade: float | Literal["н"] | Literal["-"]
     max_grade: float
     caption: str
     side_text: str
