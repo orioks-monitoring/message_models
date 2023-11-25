@@ -1,6 +1,6 @@
 from typing import Literal
 
-from pydantic import BaseModel
+from pydantic import BaseModel, PositiveInt
 
 
 class BaseMessage(BaseModel):
@@ -9,7 +9,7 @@ class BaseMessage(BaseModel):
 
 class ChangeMessage(BaseMessage):
     type: Literal["mark", "homework", "request", "new"]
-    user_telegram_id: int
+    user_telegram_id: PositiveInt
 
 
 class MarkChangeMessage(ChangeMessage):
@@ -43,3 +43,8 @@ class NewChangeMessage(ChangeMessage):
 class ToAdminsMessage(BaseMessage):
     type: Literal["to_admins"] = "to_admins"
     message: str
+
+
+class OrioksRequestMessage(BaseModel):
+    user_telegram_id: PositiveInt
+    event_type: Literal["marks", "homeworks", "requests", "news"]

@@ -1,5 +1,5 @@
 [project]
-name = "ORIOKS Monitoring Bot"
+name = "ORIOKS Monitoring Message Models"
 description = "Bot for tracking changes in the educational electronic environment (ORIOKS) National Research University of Electronic Technology MIET orioks.miet.ru on the Telegram platform."
 license = "MIT"
 repository = "https://github.com/orioks-monitoring/message_models"
@@ -12,3 +12,18 @@ line-length = 79
 skip-string-normalization = true
 target-version = ['py311']
 include = '\.pyi?$'
+
+[tool.mypy]
+ignore_missing_imports = true
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+python_version = 3.11
+
+# Enable pydantic mypy plugin.
+plugins = ["pydantic.mypy"]
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
