@@ -1,6 +1,6 @@
 from typing import Literal
 
-from pydantic import BaseModel, PositiveInt
+from pydantic import BaseModel, PositiveInt, field_validator, ValidationInfo
 
 
 class BaseMessage(BaseModel):
@@ -47,4 +47,23 @@ class ToAdminsMessage(BaseMessage):
 
 class OrioksRequestMessage(BaseModel):
     user_telegram_id: PositiveInt
-    event_type: Literal["marks", "homeworks", "requests", "news"]
+    event_type: Literal[
+        "marks",
+        "homeworks",
+        "requests-questionnaire",
+        "requests-doc",
+        "requests-reference",
+        "news",
+        "news-individual",
+    ]
+    news_id: int | None = None
+
+    @field_validator('news_id')
+    def news_id_must_be_only_if_event_type_is_news_individual(
+        cls, v: int, info: ValidationInfo
+    ) -> int:
+        if info.data.get('event_type') != 'news-individual':
+            raise ValueError(
+                'news_id must be only if event_type is news-individual'
+            )
+        return v
